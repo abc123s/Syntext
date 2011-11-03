@@ -1,0 +1,299 @@
+<html>
+<head> 
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>   
+<script type="text/javascript">
+// jQuery stuff
+$(document).ready(function () {
+	// search bar text + activate
+	$("#word0").attr("value", "search!");
+	$("#word1").attr("value", "search!");
+	$("#word2").attr("value", "search!");
+	
+	var text = "search!";
+
+	$("#word0").focus(function() {
+		$(this).addClass("active");
+		if($(this).attr("value") == text) $(this).attr("value", "");
+	});
+	$("#word0").blur(function() {
+		if($(this).attr("value") == "") {
+			$(this).attr("value", text);
+			$(this).removeClass("active");
+		}
+	});
+	$("#word1").focus(function() {
+		$(this).addClass("active");
+		if($(this).attr("value") == text) $(this).attr("value", "");
+	});
+	$("#word1").blur(function() {
+		if($(this).attr("value") == "") {
+			$(this).attr("value", text);
+			$(this).removeClass("active");
+		}
+	});
+	$("#word2").focus(function() {
+		$(this).addClass("active");
+		if($(this).attr("value") == text) $(this).attr("value", "");
+	});
+	$("#word2").blur(function() {
+		if($(this).attr("value") == "") {
+			$(this).attr("value", text);
+			$(this).removeClass("active");
+		}
+	});
+	
+});
+
+// synonyms etc
+function makeNames() {
+	var group0 = [];
+	group0.push(document.getElementById('word0').value);
+	var group1 = [];
+	group1.push(document.getElementById('word1').value);
+	var group2 = [];
+	group2.push(document.getElementById('word2').value);
+
+	var i = 0;
+	while (i < 4) {
+		group0.push(document.getElementById('output0').childNodes[i].innerHTML);
+		group1.push(document.getElementById('output1').childNodes[i].innerHTML);
+		group2.push(document.getElementById('output2').childNodes[i].innerHTML);
+		i++;
+	}
+	
+	document.getElementById('output').innerHTML = joinify(group0,group1).concat(joinify(group0,group2), joinify(group1, group2));
+}
+
+function joinify(array1, array2) {
+	var i = 0;
+	var list = [];
+	while (i < array1.length) {
+		var j = 0;
+		while (j < array2.length) {
+			var k = 1;
+			while (k < 4) {
+				var mix1 = mash(array1[i], array2[j], k);
+				var mix2 = mash(array2[j], array1[i], k);
+				if (mix1 != false) {
+					list.push(mix1);
+				}
+				if (mix2 != false) {
+					list.push(mix2);
+				}
+				k++;
+			}
+		j++;
+		}
+	i++;
+	}
+	return list;
+}				
+
+function mash(word1, word2, len) {
+	var len1 = word1.length;
+	var len2 = word2.length;
+
+	if (word1.substring(len1 - len) == word2.substring(0, len)) {
+		return word1.substring(0, len1 - len) + word2;
+	}
+	else {
+		return false;
+	}
+}		
+
+function getSynonym() {
+	var i = 0;
+	while (i < 3) {
+		makerequest(i);
+		i++;
+	}
+}
+	
+function processResponse0(json){
+var response = [];
+var verbs = [];
+var nouns = [];
+var adjectives = [];
+var adverbs = [];
+if (json.verb != null) {
+	verbs = json.verb.syn;
+}
+if (json.noun != null) {
+	nouns = json.noun.syn;
+}
+if (json.adjective != null) {
+	adjectives = json.adjective.syn;
+}
+if (json.adverb != null) {
+	adverbs = json.adverb.syn;
+}
+
+response = response.concat(verbs, nouns, adjectives, adverbs);
+var list = document.getElementById('output0');
+var i = 0;
+
+while (list.firstChild) {
+    list.removeChild(list.firstChild);
+}
+
+response = response.filter(function(v) 
+						   { return v.indexOf(' ') == -1; 
+						   });
+
+permute(response);
+
+while (i < 4) {
+	var item = document.createElement('li');
+	item.innerHTML = response[i];
+	list.appendChild(item);
+	i++;
+	}
+}
+
+function processResponse1(json){
+var response = [];
+var verbs = [];
+var nouns = [];
+var adjectives = [];
+var adverbs = [];
+if (json.verb != null) {
+	verbs = json.verb.syn;
+}
+if (json.noun != null) {
+	nouns = json.noun.syn;
+}
+if (json.adjective != null) {
+	adjectives = json.adjective.syn;
+}
+if (json.adverb != null) {
+	adverbs = json.adverb.syn;
+}
+
+response = response.concat(verbs, nouns, adjectives, adverbs);
+var list = document.getElementById('output1');
+var i = 0;
+
+while (list.firstChild) {
+    list.removeChild(list.firstChild);
+}
+
+response = response.filter(function(v) 
+						   { return v.indexOf(' ') == -1; 
+						   });
+
+permute(response);
+
+while (i < 4) {
+	var item = document.createElement('li');
+	item.innerHTML = response[i];
+	list.appendChild(item);
+	i++;
+	}
+}
+function processResponse2(json){
+var response = [];
+var verbs = [];
+var nouns = [];
+var adjectives = [];
+var adverbs = [];
+if (json.verb != null) {
+	verbs = json.verb.syn;
+}
+if (json.noun != null) {
+	nouns = json.noun.syn;
+}
+if (json.adjective != null) {
+	adjectives = json.adjective.syn;
+}
+if (json.adverb != null) {
+	adverbs = json.adverb.syn;
+}
+
+response = response.concat(verbs, nouns, adjectives, adverbs);
+var list = document.getElementById('output2');
+var i = 0;
+
+while (list.firstChild) {
+    list.removeChild(list.firstChild);
+}
+
+response = response.filter(function(v) 
+						   { return v.indexOf(' ') == -1; 
+						   });
+
+permute(response);
+
+while (i < 4) {
+	var item = document.createElement('li');
+	item.innerHTML = response[i];
+	list.appendChild(item);
+	i++;
+	}
+}
+
+function permute(array) {
+	var n = array.length - 1;
+	while (n > 0) {
+		var i = Math.floor(Math.random()*n);
+		var temp  = array[n];
+		array[n] = array[i];
+		array[i] = temp;
+		n--;
+	}
+}
+
+function makerequest(x) {
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	var div = "word" + x;
+	var request = 'http://words.bighugelabs.com/api/2/40868e50c339e2dcdaa54d041dffbf88/' + document.getElementById(div).value + '/json?callback=processResponse' + x; 
+	script.type = 'text/javascript';
+	script.src = request;
+	head.appendChild(script);
+}
+
+</script>
+</head>
+
+<body>
+<div id="header">
+Syntext
+</div>
+<div id="container">
+<div id="div0">
+	<div class="word">
+		<input type="text" / id = "word0">
+	</div>
+	<div class="output">
+		<ul id ="output0" onclick="makerequest(0)">
+		</ul>
+	</div>
+</div>
+<div id="div1">
+	<div class="word">
+		<input type="text" id="word1" /> 
+	</div>
+	<div class="output">
+		<ul id ="output1" onclick="makerequest(1)">
+		</ul>
+	</div>
+</div>
+<div id="div2">
+	<div class="word">
+		<input type="text" id="word2" /> 
+	</div>
+	<div class="output">
+		<ul id ="output2" onclick="makerequest(2)">
+		</ul>
+	</div>
+</div>
+<div id="output">
+</div>
+<div id="buttons">
+	<button type="button" onclick="getSynonym()">Get Synonyms</button>
+	<button type="button" onclick="makeNames()"> Create! </button>
+</div>
+</div>
+</body>
+</html>

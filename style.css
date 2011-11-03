@@ -1,0 +1,78 @@
+#header {
+	margin-bottom: 50px;
+	padding: 50px 50px 50px 50px;
+	font: 60px Helvetica;
+}
+
+#container {
+	margin-left: 250px;
+	margin-right: 250px;
+}
+
+#div0, #div1, #div2 {
+	float: left;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+#buttons {
+	float: right
+}
+
+#output {
+	padding-top: 50px;
+	
+}
+
+#output0:hover {
+	border: 1px solid #c7c7c7;
+	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+#output1:hover {
+	border: 1px solid #c7c7c7;
+	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+#output2:hover {
+	border: 1px solid #c7c7c7;
+	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+
+#word0 {
+	width: 300px;
+	float: left; padding: 20px 40px 20px 40px;
+	border: 3px solid #c7c7c7;
+	border-radius: 100px; -moz-border-radius: 100px; -webkit-border-radius: 100px;
+	font: 32px Helvetica; color: #000000;
+	outline: none; /*Remove Chrome and Safari glows on focus*/
+}
+#word0.active {
+	background: #ebf3fc url('bar-bg-active-red.png') repeat-x;
+	border: 3px solid #ff8080;
+}
+
+#word1 {
+	width: 300px;
+	float: left; padding: 20px 40px 20px 40px;
+	border: 3px solid #c7c7c7;
+	border-radius: 100px; -moz-border-radius: 100px; -webkit-border-radius: 100px;
+	font: 32px Helvetica; color: #000000;
+	outline: none; /*Remove Chrome and Safari glows on focus*/
+}
+#word1.active {
+	background: #ebf3fc url('bar-bg-active-blue.png') repeat-x;
+	border: 3px solid #abd2ff;
+}
+
+#word2 {
+	width: 300px;
+	float: left; padding: 20px 40px 20px 40px;
+	border: 3px solid #c7c7c7;
+	border-radius: 100px; -moz-border-radius: 100px; -webkit-border-radius: 100px;
+	font: 32px Helvetica; color: #000000;
+	outline: none; /*Remove Chrome and Safari glows on focus*/
+}
+#word2.active {
+	background: #ebf3fc url('bar-bg-active-green.png') repeat-x;
+	border: 3px solid #70f070;
+}
+
