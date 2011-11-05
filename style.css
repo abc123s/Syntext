@@ -46,6 +46,16 @@ ul {
     margin-top: 60px;
 }
 
+li {
+    margin-left: -18px;
+}
+
+#output0, #output1, #output2 {
+    border: 1px solid #ffffff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 #output0:hover {
 	border: 1px solid #c7c7c7;
 	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
@@ -98,3 +108,16 @@ ul {
 	border: 3px solid #70f070;
 }
 
+#output {
+    padding-top: 170px;
+    width: 200px;
+}
+
+.created {
+    border: 1px solid #ffffff;
+}
+
+.created:hover {
+	border: 1px solid #c7c7c7;
+	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
