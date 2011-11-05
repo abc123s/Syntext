@@ -79,11 +79,11 @@ function makeNames() {
                 highlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
             };
         })(i));
-        div.onmouseout = (function(i) {
+        div.addEventListener('mouseout', (function(i) {
             return function() {
-                unhighlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
+                highlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
             };
-        })(i);
+        })(i));
 	    output.appendChild(div);
 	    i++;
 	}
@@ -188,9 +188,25 @@ if (json.adverb != null) {
 	adverbs = json.adverb.syn;
 }
 
+
 response = response.concat(verbs, nouns, adjectives, adverbs);
-var list = document.getElementById('output0');
+
 var i = 0;
+var container = document.getElementById('div0');
+if (container.childNodes.length > 3) {
+    container.removeChild(container.childNodes[3]);
+}
+var div = document.createElement('div');
+div.setAttribute('class', 'output');
+var list = document.createElement('ul');
+list.setAttribute('id', 'output0');
+list.addEventListener('click', (function() {
+    makerequest(0);
+    })
+);
+
+container.appendChild(div);
+div.appendChild(list);
 
 while (list.firstChild) {
     list.removeChild(list.firstChild);
@@ -230,8 +246,23 @@ if (json.adverb != null) {
 }
 
 response = response.concat(verbs, nouns, adjectives, adverbs);
-var list = document.getElementById('output1');
+
 var i = 0;
+var container = document.getElementById('div1');
+if (container.childNodes.length > 3) {
+    container.removeChild(container.childNodes[3]);
+}
+var div = document.createElement('div');
+div.setAttribute('class', 'output');
+var list = document.createElement('ul');
+list.setAttribute('id', 'output1');
+list.addEventListener('click', (function() {
+    makerequest(1);
+    })
+);
+
+container.appendChild(div);
+div.appendChild(list);
 
 while (list.firstChild) {
     list.removeChild(list.firstChild);
@@ -270,8 +301,23 @@ if (json.adverb != null) {
 }
 
 response = response.concat(verbs, nouns, adjectives, adverbs);
-var list = document.getElementById('output2');
+
 var i = 0;
+var container = document.getElementById('div2');
+if (container.childNodes.length > 3) {
+    container.removeChild(container.childNodes[3]);
+}
+var div = document.createElement('div');
+div.setAttribute('class', 'output');
+var list = document.createElement('ul');
+list.setAttribute('id', 'output2');
+list.addEventListener('click', (function() {
+    makerequest(2);
+    })
+);
+
+container.appendChild(div);
+div.appendChild(list);
 
 while (list.firstChild) {
     list.removeChild(list.firstChild);
@@ -326,27 +372,15 @@ function makerequest(x) {
 	<div class="word">
 		<input type="text" / id = "word0">
 	</div>
-	<div class="output">
-		<ul id ="output0" onclick="makerequest(0)">
-		</ul>
-	</div>
 </div>
 <div id="div1">
 	<div class="word">
 		<input type="text" id="word1" /> 
 	</div>
-	<div class="output">
-		<ul id ="output1" onclick="makerequest(1)">
-		</ul>
-	</div>
 </div>
 <div id="div2">
 	<div class="word">
 		<input type="text" id="word2" /> 
-	</div>
-	<div class="output">
-		<ul id ="output2" onclick="makerequest(2)">
-		</ul>
 	</div>
 </div>
 <div id="output">
