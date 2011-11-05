@@ -48,22 +48,54 @@ $(document).ready(function () {
 // synonyms etc
 function makeNames() {
 	var group0 = [];
-	group0.push(document.getElementById('word0').value);
+	group0.push([document.getElementById('word0').value, 0, -1]);
 	var group1 = [];
-	group1.push(document.getElementById('word1').value);
+	group1.push([document.getElementById('word1').value, 1, -1]);
 	var group2 = [];
-	group2.push(document.getElementById('word2').value);
-
+	group2.push([document.getElementById('word2').value, 2, -1]);
+    var type1 = [];
 	var i = 0;
 	while (i < 4) {
-		group0.push(document.getElementById('output0').childNodes[i].innerHTML);
-		group1.push(document.getElementById('output1').childNodes[i].innerHTML);
-		group2.push(document.getElementById('output2').childNodes[i].innerHTML);
+        group0.push([document.getElementById('output0').childNodes[i].innerHTML, 0, i]);
+        group1.push([document.getElementById('output1').childNodes[i].innerHTML, 1, i]);
+        group2.push([document.getElementById('output2').childNodes[i].innerHTML, 2, i]);
 		i++;
 	}
 	
-	document.getElementById('output').innerHTML = joinify(group0,group1).concat(joinify(group0,group2), joinify(group1, group2));
+	type1 = joinify(group0,group1).concat(joinify(group0,group2), joinify(group1, group2));
+    permute(type1);
+
+    var output = document.getElementById('output');
+    while (output.firstChild) {
+        output.removeChild(output.firstChild);
+    }
+    i = 0;
+    while (i < 10) {
+	    var div = document.createElement('div');
+        div.innerHTML = type1[i][0];
+        div.setAttribute('class', 'created'); 
+        div.addEventListener('mouseover', (function(i) {
+            return function() {
+                highlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
+            };
+        })(i));
+        div.onmouseout = (function(i) {
+            return function() {
+                unhighlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
+            };
+        })(i);
+	    output.appendChild(div);
+	    i++;
+	}
 }
+
+function highlight(x1, x2, y1, y2) {
+alert('you fucker');
+}
+
+function unhighlight(x1, x2, y1, y2) {
+}
+
 
 function joinify(array1, array2) {
 	var i = 0;
@@ -72,14 +104,14 @@ function joinify(array1, array2) {
 		var j = 0;
 		while (j < array2.length) {
 			var k = 1;
-			while (k < 4) {
-				var mix1 = mash(array1[i], array2[j], k);
-				var mix2 = mash(array2[j], array1[i], k);
+			while (k < 6) {
+				var mix1 = mash(array1[i][0], array2[j][0], k, Math.floor(k/2));
+				var mix2 = mash(array2[j][0], array1[i][0], k, Math.floor((k-1)/2));
 				if (mix1 != false) {
-					list.push(mix1);
+					list.push([mix1, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
-				if (mix2 != false) {
-					list.push(mix2);
+				if (mix2 != false) {	
+					list.push([mix2, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
 				k++;
 			}
@@ -90,17 +122,45 @@ function joinify(array1, array2) {
 	return list;
 }				
 
-function mash(word1, word2, len) {
+function mash(word1, word2, len, err) {
 	var len1 = word1.length;
 	var len2 = word2.length;
 
-	if (word1.substring(len1 - len) == word2.substring(0, len)) {
-		return word1.substring(0, len1 - len) + word2;
+    if (len > len1 || len > len2) {
+        return false;
+    }
+    if (editDistance(word1.substring(len1 - len), word2.substring(0, len)) <= err) {
+        if (len1 > len2) {
+		    return word1.substring(0, len1 - len) + word2;
+        }
+        else {
+            return word1 + word2.substring(len);
+        }
 	}
 	else {
 		return false;
 	}
 }		
+
+function editDistance(word1, word2) {
+    var len1 = word1.length;
+    var len2 = word2.length;
+    if (len1 != len2) {
+        return false;
+    }
+    else {
+        var i = 0;
+        var err = 0;
+        while (i < len1)
+        {
+            if(word1[i] != word2[i]) {
+                err++;
+            }
+            i++;
+        }
+        return err;
+    }
+}
 
 function getSynonym() {
 	var i = 0;
