@@ -1,5 +1,6 @@
 <html>
 <head> 
+    
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>   
 <script type="text/javascript">
@@ -81,7 +82,7 @@ function makeNames() {
         })(i));
         div.addEventListener('mouseout', (function(i) {
             return function() {
-                highlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
+                unhighlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
             };
         })(i));
 	    output.appendChild(div);
@@ -90,10 +91,72 @@ function makeNames() {
 }
 
 function highlight(x1, x2, y1, y2) {
-
+    var color1;
+    var color2;
+    switch (x1) {
+        case 0:
+            color1 = 'red';
+            break;
+        case 1:
+            color1 = 'blue';
+            break;
+        case 2:
+            color1 = 'green';
+            break;
+    }
+    switch (y1) {
+        case 0:
+            color2 = 'red';
+            break;
+        case 1:
+            color2 = 'blue';
+            break;
+        case 2:
+            color2 = 'green';
+            break;
+    }
+    if (x2 == -1) {
+        var id = 'word' + x1;
+        var word = document.getElementById(id);
+        word.style.color = color1;
+    }
+    else {
+        var listname1 = 'output' + x1;
+        var list1 = document.getElementById(listname1);
+        list1.childNodes[x2].style.color = color1;
+    }
+    if (y2 == -1) {
+        var id = 'word' + y1;
+        var word = document.getElementById(id);
+        word.style.color = color2;
+    }
+    else {
+        var listname2 = 'output' + y1;
+        var list2 = document.getElementById(listname2);
+        list2.childNodes[y2].style.color = color2;
+    }
 }
-
 function unhighlight(x1, x2, y1, y2) {
+    if (x2 == -1) {
+        var id = 'word' + x1;
+        var word = document.getElementById(id);
+        word.style.color = 'black';
+    }
+    else {
+        var listname1 = 'output' + x1;
+        var list1 = document.getElementById(listname1);
+        list1.childNodes[x2].style.color = 'black';
+    }
+    if (y2 == -1) {
+        var id = 'word' + y1;
+        var word = document.getElementById(id);
+        word.style.color = 'black';
+    }
+    else {
+        var listname2 = 'output' + y1;
+        var list2 = document.getElementById(listname2);
+        list2.childNodes[y2].style.color = 'black';
+    }
 }
 
 
