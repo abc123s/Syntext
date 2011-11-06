@@ -3,9 +3,25 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>   
 <script type="text/javascript">
-// jQuery stuff
+    
+// search bar
 $(document).ready(function () {
-	// search bar text + activate
+    // domainr api
+    var url = "http://domai.nr/api/json/search?q=";
+    var query;
+
+    $("#output").delegate(".created", "click", function() {
+        query = $(this).text();
+        $.getJSON(url+query+"&callback=?", function(json) {
+            $.each(json.results, function(i, result) {
+                alert(result.domain);
+                // document.getElementById("domains").innerHTML = result.domain;
+            });
+        });
+    })
+
+        
+    // search bar text + activate
 	$("#word0").attr("value", "search!");
 	$("#word1").attr("value", "search!");
 	$("#word2").attr("value", "search!");
@@ -386,6 +402,8 @@ function makerequest(x) {
 	</div>
 </div>
 <div id="output">
+</div>
+<div id="domains">
 </div>
 <div id="buttons">
 	<button type="button" onclick="getSynonym()">Get Synonyms</button>
