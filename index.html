@@ -90,6 +90,7 @@ function makeNames() {
 }
 
 function highlight(x1, x2, y1, y2) {
+
 }
 
 function unhighlight(x1, x2, y1, y2) {
@@ -199,6 +200,7 @@ if (container.childNodes.length > 3) {
 var div = document.createElement('div');
 div.setAttribute('class', 'output');
 var list = document.createElement('ul');
+var $list = $(list);
 list.setAttribute('id', 'output0');
 list.addEventListener('click', (function() {
     makerequest(0);
@@ -221,9 +223,9 @@ permute(response);
 while (i < 4) {
 	var item = document.createElement('li');
 	item.innerHTML = response[i];
-	list.appendChild(item);
-	i++;
-	}
+    list.appendChild(item);
+    i++;
+    }
 }
 
 function processResponse1(json){

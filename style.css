@@ -48,6 +48,8 @@ ul {
 
 li {
     margin-left: -18px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 #output0, #output1, #output2 {
@@ -114,6 +116,8 @@ li {
 }
 
 .created {
+    margin: 2px;
+    padding: 5px;
     border: 1px solid #ffffff;
 }
 
