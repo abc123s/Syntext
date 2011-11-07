@@ -23,11 +23,11 @@ $(document).ready(function () {
 
         
     // search bar text + activate
-	$("#word0").attr("value", "search!");
-	$("#word1").attr("value", "search!");
-	$("#word2").attr("value", "search!");
+	$("#word0").attr("value", "search...");
+	$("#word1").attr("value", "search...");
+	$("#word2").attr("value", "search...");
 	
-	var text = "search!";
+	var text = "search...";
 
 	$("#word0").focus(function() {
 		$(this).addClass("active");
@@ -95,7 +95,7 @@ function makeNames() {
         output2.removeChild(output2.firstChild);
     }
     i = 0;
-    while (i < 12) {
+    while (i < 12 && i < type1.length) {
 	    var div = document.createElement('span');
         div.innerHTML = type1[i][0];
         div.setAttribute('class', 'created'); 
@@ -121,6 +121,7 @@ function makeNames() {
 	    i++;
     }
     $("#output").css("border-top", "1px dotted");
+    $("#output").css("border-bottom", "1px dotted");
 }
 
 function highlight(x1, x2, y1, y2) {
@@ -203,7 +204,7 @@ function joinify(array1, array2) {
 			while (k < 6) {
 				var mix1 = mash(array1[i][0], array2[j][0], k, Math.floor(k/2));
 				var mix2 = mash(array2[j][0], array1[i][0], k, Math.floor((k-1)/2));
-				if (mix1 != false) {
+				if (mix1 != false && mix1.length < 15) {
 					list.push([mix1, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
 				if (mix2 != false) {	
