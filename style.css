@@ -1,4 +1,4 @@
-body {
+body {    
     margin: 0px;
 }
 
@@ -94,7 +94,7 @@ a, a:link, a:visited, a:active, a:hover {
 }
 
 #buttons {
-	float: right
+	float: right;
 }
 
 ul {
@@ -140,7 +140,7 @@ li {
 	background: #ebf3fc url('bar-bg-active-red.png') repeat-x;
     color: black;
     border: 3px solid #ff8080;
-}
+} 
 #word1.active {
 	background: #ebf3fc url('bar-bg-active-blue.png') repeat-x;
     color: black;
@@ -151,7 +151,6 @@ li {
     color: black;
 	border: 3px solid #70f070;
 }
-
 
 #output {
     margin-top: 180px;
@@ -200,8 +199,6 @@ li {
     background: url('chevron.png') no-repeat;
 }
 
-
-
 .button { 
 	font: 14px Helvetica; color: #C7C7C7;
     margin: 10px;
@@ -217,6 +214,6 @@ li {
     font 14px Helvetica;
     border: 2px solid #333333;
     color: #333333;
-    border-radius: 10px;
+    border-radius: 10px;    
     -moz-border-radius: 10px; -webkit-border-radius: 10px;
 }
