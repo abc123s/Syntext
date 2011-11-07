@@ -247,7 +247,7 @@ function joinify(array1, array2) {
 				if (mix1 != false && mix1.length < 15) {
 					list.push([mix1, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
-				if (mix2 != false) {	
+				if (mix2 != false && mix2.length < 15) {	
 					list.push([mix2, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
 				k++;
@@ -323,8 +323,11 @@ function getSynonym() {
     }
     document.getElementById('i-one').style.display = 'none';
     document.getElementById('step-one').style.display= 'none';
-    document.getElementById('i-two').style.display = 'inherit';
-    document.getElementById('step-two').style.display = 'inherit';
+    if (document.getElementById('i-three').style.display == '')
+    {
+        document.getElementById('i-two').style.display = 'inherit';
+        document.getElementById('step-two').style.display = 'inherit';
+    }
 }
 	
 function processResponse0(json){
@@ -561,7 +564,9 @@ function makerequest(x) {
             </div>
             <div id="i-one" class="stepinstructions">
                 Give us three words related to your idea.
-                <span class="button" onclick="getSynonym()"> Generate Synonyms! </span>
+                <span class="button" onclick="getSynonym()"> 
+                    Generate Synonyms! 
+                </span>
             </div>
             <div id="step-two" class="step">
                 <span class="steptitle">
@@ -569,8 +574,12 @@ function makerequest(x) {
                 </span>
             </div>
             <div id="i-two" class="stepinstructions">
-                If you don't like the synonyms, click on a group to generate new ones. Once you're satisfied, click mash.
-                <span class="button" onclick="makeNames()"> Mash Words! 
+                <span id="button0" class="button" onclick="getSynonym()"> 
+                    Generate Synonyms! 
+                </span>
+                If you don't like the synonyms, click on a group to generate new ones. Once you're satisfied, click mash words.
+                <span class="button" onclick="makeNames()"> 
+                    Mash Words! 
                 </span>
             </div>
             <div id="step-three" class="step">
@@ -579,7 +588,27 @@ function makerequest(x) {
                 </span>
             </div>
             <div id="i-three" class="stepinstructions">
-                Click on a name to see related domain names. If you want to generate more names, click mash words again.
+                <span id="button1" class="button" onclick="getSynonym()"> 
+                    Generate Synonyms! 
+                </span>
+                <span id="button2" class="button" onclick="makeNames()"> 
+                    Mash Words! 
+                </span>
+                Click on a name to see related domain names. If you want to generate more, click mash words again.
+            </div>
+            <div id="step-four" class="step">
+                <span class="steptitle">
+                    Step Three
+                </span>
+            </div>
+            <div id="i-four" class="stepinstructions">
+                <span id="button3" class="button" onclick="getSynonym()"> 
+                    Generate Synonyms! 
+                </span>
+                <span id="button4" class="button" onclick="makeNames()"> 
+                    Mash Words! 
+                </span>
+                Click on a name to see related domain names. If you want to generate more, click mash words again.
             </div>
         </div>
     </div>

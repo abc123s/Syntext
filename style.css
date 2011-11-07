@@ -26,7 +26,7 @@ a, a:link, a:visited, a:active, a:hover {
     width: 860px;
     margin-left: auto;
     margin-right: auto;
-    font: 18px Helvetica;
+    font: 18px Helvetica; color: #333333;
 }
 
 #content-left {
@@ -57,6 +57,11 @@ a, a:link, a:visited, a:active, a:hover {
     display: none;
 }
 
+#step-four {
+    margin-top: 280px;
+    display: none;
+}
+
 .steptitle {
     color: white;
     display: block;
@@ -78,6 +83,11 @@ a, a:link, a:visited, a:active, a:hover {
 #i-three {
     display: none;
 }
+
+#i-four {
+    display: none;
+}
+
 .stepinstructions {
     color: grey;
     margin-left: 25px;
@@ -229,4 +239,31 @@ li {
     color: #333333;
     border-radius: 10px;    
     -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+
+#button0 {
+    margin-top: -93px;
+    margin-bottom: 68px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 135px;
+}
+
+#button1 {
+    margin-top: -228px;
+    margin-bottom: 203px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 135px;
+}
+
+#button2 {
+    margin-top: -93px;
+    margin-bottom: 68px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 86px;
 }
