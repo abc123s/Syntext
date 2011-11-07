@@ -32,16 +32,20 @@ $(document).ready(function () {
                 }
             });
         });
+        
+        $("#i-three").hide();
+        $("#step-three").hide();
+        $("#i-four").css("display", "inherit");
+        $("#step-four").css("display", "inherit");
     });
 
     // clicked on a domain, clear all other grays
     $("#domains").delegate(".urls", "click", function() {        
         $(".urls").each(function() {
             $(this).css({'background-color':''});
-       //     $(this).removeClass('toggle');
         });
         $(this).css({'background-color':'#c7c7c7'});
-      //  $(this).addClass("toggle");
+        
     });
 
     // hovering arrows
