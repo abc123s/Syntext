@@ -37,6 +37,7 @@ $(document).ready(function () {
         $("#step-three").hide();
         $("#i-four").css("display", "inherit");
         $("#step-four").css("display", "inherit");
+        $("#domain-info").empty();
     });
 
     // clicked on a domain, clear all other grays
@@ -45,7 +46,18 @@ $(document).ready(function () {
             $(this).css({'background-color':''});
         });
         $(this).css({'background-color':'#c7c7c7'});
-        
+
+        // retrieve status
+        if ($(this).hasClass("available") == true) {
+            $("#domain-info").text("Available!");
+        }
+        else if ($(this).hasClass("maybe") == true) {
+            $("#domain-info").text("Might be available!");
+        }
+        else {
+            $("#domain-info").text("Taken!");
+        }
+
     });
 
     // hovering arrows
@@ -64,8 +76,7 @@ $(document).ready(function () {
     // search bar text + activate
 	$("#word0").attr("value", "search...");
 	$("#word1").attr("value", "search...");
-	$("#word2").attr("value", "search...");
-	
+	$("#word2").attr("value", "search...");	
 	var text = "search...";
 
 	$("#word0").focus(function() {
@@ -559,6 +570,8 @@ function makerequest(x) {
                 </div>
             </div>
             <div id="domains">
+            </div>
+            <div id="domain-info">
             </div>
         </div>
         <div id="content-right">

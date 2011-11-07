@@ -14,6 +14,7 @@ body {
     padding-bottom: 15px;
     margin-bottom: 20px;
 	font: 48px Helvetica;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
 }
 
 a, a:link, a:visited, a:active, a:hover {
@@ -58,7 +59,7 @@ a, a:link, a:visited, a:active, a:hover {
 }
 
 #step-four {
-    margin-top: 280px;
+    margin-top: 305px;
     display: none;
 }
 
@@ -195,11 +196,20 @@ li {
 
 #domains {
     margin-top: 10px;
+    width: 225px; 
+    float: left;
+}
+
+#domain-info {
+    width: 350px;
+    display: block;
+    float: right;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .urls {
     padding: 5px 0 5px 35px;
-    margin-right: 350px;
 }
 
 .urls img {
@@ -262,6 +272,24 @@ li {
 #button2 {
     margin-top: -93px;
     margin-bottom: 68px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 86px;
+}
+
+#button3 {
+    margin-top: -353px;
+    margin-bottom: 328px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 135px;
+}
+
+#button4 {
+    margin-top: -218px;
+    margin-bottom: 193px;
     margin-left: auto;
     margin-right: auto;
     float: none;
