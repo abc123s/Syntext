@@ -297,5 +297,18 @@ li {
 }
 
 #domainsearch {
-    display: none;
+display: none;
 }
+
+#ads {
+float: left;
+margin-top: 20px;
+width: 575px;
+height: 100px;
+background-color: #F5F5F5;
+}
+
+#ads-inner {
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
