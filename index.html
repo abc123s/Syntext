@@ -11,12 +11,12 @@ $(document).ready(function () {
     var url = "http://domai.nr/api/json/search?q=";
     var query;
 
-    $("#output").delegate(".created", "click", function() {
+    $(".names").delegate(".created", "click", function() {
         query = $(this).text();
         $.getJSON(url+query+"&callback=?", function(json) {
+            $('#domains').empty();
             $.each(json.results, function(i, result) {
-                alert(result.domain);
-                // document.getElementById("domains").innerHTML = result.domain;
+                $("#domains").delaappend('<div id =url"' + i + '">' + result.domain + '</div>');
             });
         });
     })
@@ -82,13 +82,17 @@ function makeNames() {
 	type1 = joinify(group0,group1).concat(joinify(group0,group2), joinify(group1, group2));
     permute(type1);
 
-    var output = document.getElementById('output');
-    while (output.firstChild) {
-        output.removeChild(output.firstChild);
+    var output1 = document.getElementById('names1');
+    var output2 = document.getElementById('names2');
+    while (output1.firstChild) {
+        output1.removeChild(output1.firstChild);
+    }
+    while(output2.firstChild) {
+        output2.removeChild(output2.firstChild);
     }
     i = 0;
     while (i < 10) {
-	    var div = document.createElement('div');
+	    var div = document.createElement('span');
         div.innerHTML = type1[i][0];
         div.setAttribute('class', 'created'); 
         div.addEventListener('mouseover', (function(i) {
@@ -100,10 +104,15 @@ function makeNames() {
             return function() {
                 unhighlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
             };
-        })(i));
-	    output.appendChild(div);
+            })(i));
+        if (i < 5) {
+	        output1.appendChild(div);
+        }
+        else {
+            output2.appendChild(div);
+        }
 	    i++;
-	}
+    }
 }
 
 function highlight(x1, x2, y1, y2) {
@@ -465,6 +474,10 @@ function makerequest(x) {
 	</div>
 </div>
 <div id="output">
+<div id="names1" class="names">
+</div>
+<div id="names2" class="names">
+</div>
 </div>
 <div id="domains">
 </div>

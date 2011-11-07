@@ -111,14 +111,29 @@ li {
 }
 
 #output {
-    padding-top: 170px;
-    width: 200px;
+    padding-top: 100px;
+    width: 800px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#names1 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#names2 {
+    padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .created {
     margin: 2px;
     padding: 5px;
     border: 1px solid #ffffff;
+    width: 150px;
 }
 
 .created:hover {
