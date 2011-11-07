@@ -40,10 +40,21 @@ a, a:link, a:visited, a:active, a:hover {
     float: right;
 }
 
-#step-one {
+.step {
     background: no-repeat url("grey-arrow.png");
     height: 40px;
+}
+#step-one {
     margin-top: -5px;
+}
+#step-two {
+    margin-top: 45px;
+    display: none;
+}
+
+#step-three {
+    margin-top: 180px;
+    display: none;
 }
 
 .steptitle {
@@ -60,6 +71,13 @@ a, a:link, a:visited, a:active, a:hover {
     margin-bottom: auto;
 }
 
+#i-two {
+    display: none;
+}
+
+#i-three {
+    display: none;
+}
 .stepinstructions {
     color: grey;
     margin-left: 25px;

@@ -122,6 +122,11 @@ function makeNames() {
     }
     $("#output").css("border-top", "1px dotted");
     $("#output").css("border-bottom", "1px dotted");
+    document.getElementById('i-two').style.display = 'none';
+    document.getElementById('step-two').style.display= 'none';
+    document.getElementById('i-three').style.display = 'inherit';
+    document.getElementById('step-three').style.display = 'inherit';
+
 }
 
 function highlight(x1, x2, y1, y2) {
@@ -260,11 +265,31 @@ function editDistance(word1, word2) {
 }
 
 function getSynonym() {
-	var i = 0;
+    var word0 = document.getElementById('word0').value;
+    var word1 = document.getElementById('word1').value;
+    var word2 = document.getElementById('word2').value;
+    var counter = 0;
+    if (word0 == 'search...') {
+        counter++;
+    }
+    if (word1 == 'search...') {
+        counter++;
+    }
+    if (word2 == 'search...') {
+        counter++;
+    }
+    if (counter > 1) {
+        return;
+    }
+    var i = 0;
 	while (i < 3) {
 		makerequest(i);
 		i++;
-	}
+    }
+    document.getElementById('i-one').style.display = 'none';
+    document.getElementById('step-one').style.display= 'none';
+    document.getElementById('i-two').style.display = 'inherit';
+    document.getElementById('step-two').style.display = 'inherit';
 }
 	
 function processResponse0(json){
@@ -494,18 +519,32 @@ function makerequest(x) {
             </div>
         </div>
         <div id="content-right">
-            <div id="step-one"> 
+            <div id="step-one" class="step"> 
                 <span class="steptitle">
                     Step One
                 </span>
             </div>
-            <div class="stepinstructions">
+            <div id="i-one" class="stepinstructions">
                 Give us three words related to your idea.
+                <button type="button" onclick="getSynonym()"> Generate Synonyms! </button>
             </div>
-        </div>
-        <div id="buttons">
-        	<button type="button" onclick="getSynonym()">Get Synonyms</button>
-        	<button type="button" onclick="makeNames()"> Create! </button>
+            <div id="step-two" class="step">
+                <span class="steptitle">
+                    Step Two
+                </span>
+            </div>
+            <div id="i-two" class="stepinstructions">
+                If you don't like the synonyms, click on a group to generate new ones. Once you're satisfied, click mash.
+        	<button type="button" onclick="makeNames()"> Mash Words! </button>
+            </div>
+            <div id="step-three" class="step">
+                <span class="steptitle">
+                    Step Three
+                </span>
+            </div>
+            <div id="i-three" class="stepinstructions">
+                Click on a name to see related domain names. If you want to generate more names, click mash words again.
+            </div>
         </div>
     </div>
 </body>
