@@ -16,7 +16,7 @@ $(document).ready(function () {
         $.getJSON(url+query+"&callback=?", function(json) {
             $('#domains').empty();
             $.each(json.results, function(i, result) {
-                $("#domains").delaappend('<div id =url"' + i + '">' + result.domain + '</div>');
+                $("#domains").append('<div id =url"' + i + '">' + result.domain + '</div>');
             });
         });
     })
@@ -82,8 +82,12 @@ function makeNames() {
 	type1 = joinify(group0,group1).concat(joinify(group0,group2), joinify(group1, group2));
     permute(type1);
 
+    var output0 = document.getElementById('names0');
     var output1 = document.getElementById('names1');
     var output2 = document.getElementById('names2');
+    while (output0.firstChild) {
+        output0.removeChild(output0.firstChild);
+    }
     while (output1.firstChild) {
         output1.removeChild(output1.firstChild);
     }
@@ -91,7 +95,7 @@ function makeNames() {
         output2.removeChild(output2.firstChild);
     }
     i = 0;
-    while (i < 10) {
+    while (i < 12) {
 	    var div = document.createElement('span');
         div.innerHTML = type1[i][0];
         div.setAttribute('class', 'created'); 
@@ -105,14 +109,18 @@ function makeNames() {
                 unhighlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
             };
             })(i));
-        if (i < 5) {
-	        output1.appendChild(div);
+        if (i < 4) {
+	        output0.appendChild(div);
+        }
+        else if (i < 8) {
+            output1.appendChild(div);
         }
         else {
             output2.appendChild(div);
         }
 	    i++;
     }
+    $("#output").css("border-top", "1px dotted");
 }
 
 function highlight(x1, x2, y1, y2) {
@@ -288,7 +296,6 @@ if (container.childNodes.length > 3) {
 var div = document.createElement('div');
 div.setAttribute('class', 'output');
 var list = document.createElement('ul');
-var $list = $(list);
 list.setAttribute('id', 'output0');
 list.addEventListener('click', (function() {
     makerequest(0);
@@ -452,40 +459,43 @@ function makerequest(x) {
 </head>
 
 <body>
-<div id="header">
-    <div id="header-inner">
-        <a href="/">Syntext</a>
+    <div id="header">
+        <div id="header-inner">
+            <a href="/">Syntext</a>
+        </div>
     </div>
-</div>
-<div id="content">
-<div id="div0">
-	<div class="word">
-		<input type="text" / id = "word0">
-	</div>
-</div>
-<div id="div1">
-	<div class="word">
-		<input type="text" id="word1" /> 
-	</div>
-</div>
-<div id="div2">
-	<div class="word">
-		<input type="text" id="word2" /> 
-	</div>
-</div>
-<div id="output">
-<div id="names1" class="names">
-</div>
-<div id="names2" class="names">
-</div>
-</div>
-<div id="domains">
-</div>
-<div id="buttons">
-	<button type="button" onclick="getSynonym()">Get Synonyms</button>
-	<button type="button" onclick="makeNames()"> Create! </button>
-</div>
-</div>
-</div>
+    <div id="content">
+        <div id="content-left">
+            <div id="div0">
+            	<div class="word">
+            		<input type="text" id = "word0" class = "input"/>
+            	</div>
+            </div>
+            <div id="div1">
+            	<div class="word">
+            		<input type="text" id="word1" class = "input"/> 
+            	</div>
+            </div>
+            <div id="div2">
+            	<div class="word">
+            		<input type="text" id="word2" class = "input"/> 
+                </div>
+            </div>
+            <div id="output">
+                <div id="names0" class="names">
+                </div>
+                <div id="names1" class="names">
+                </div>
+                <div id="names2" class="names">
+                </div>
+            </div>
+            <div id="domains">
+            </div>
+        </div>
+        <div id="buttons">
+        	<button type="button" onclick="getSynonym()">Get Synonyms</button>
+        	<button type="button" onclick="makeNames()"> Create! </button>
+        </div>
+    </div>
 </body>
 </html>
