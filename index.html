@@ -139,9 +139,10 @@ function makeNames() {
     $("#output").css("border-bottom", "1px dotted");
     document.getElementById('i-two').style.display = 'none';
     document.getElementById('step-two').style.display= 'none';
-    document.getElementById('i-three').style.display = 'inherit';
-    document.getElementById('step-three').style.display = 'inherit';
-
+    if (document.getElementById('i-four').style.display == '') {
+        document.getElementById('i-three').style.display = 'inherit';
+        document.getElementById('step-three').style.display = 'inherit';
+    }
 }
 
 function highlight(x1, x2, y1, y2) {
