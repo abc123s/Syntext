@@ -8,7 +8,7 @@ body {
 }
 
 #header-inner {
-    width: 800px;
+    width: 850px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 15px;
@@ -23,7 +23,7 @@ a, a:link, a:visited, a:active, a:hover {
 }
 
 #content {
-    width: 800px;
+    width: 850px;
     margin-left: auto;
     margin-right: auto;
     font: 18px Helvetica;
@@ -32,6 +32,32 @@ a, a:link, a:visited, a:active, a:hover {
 #content-left {
     width: 575px;
     float: left;
+}
+
+#content-right {
+    width: 270px;
+    padding-top: 3px;
+    float: right;
+}
+
+#step-one {
+    background: no-repeat url("grey-arrow.png");
+    height: 40px;
+    margin-top: -5px;
+}
+
+.steptitle {
+    color: white;
+    margin-left: 30px;
+    font: 20px Helvetica;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.stepinstructions {
+    color: grey;
+    margin-left: 30px;
+    margin-top: 10px;
 }
 
 #div0, #div1 {
