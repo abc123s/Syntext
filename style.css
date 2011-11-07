@@ -184,19 +184,32 @@ li {
 }
 
 #domains {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .urls {
-    padding: 5px 0 5px 35px; 
+    padding: 5px 0 5px 35px;
+    margin-right: 350px;
+}
+
+.urls img {
+    float: right;
+    margin-top: -5px;
+}
+
+.taken {
+    background: url('taken.png') no-repeat left;
+    background-position: 4%;
 }
 
 .available {
-    background: url('double_chevron.png') no-repeat;
+    background: url('ok.png') no-repeat left;
+    background-position: 4%;
 }
 
 .maybe {
-    background: url('chevron.png') no-repeat;
+    background: url('maybe.png') no-repeat left;
+    background-position: 4%;
 }
 
 .button { 
