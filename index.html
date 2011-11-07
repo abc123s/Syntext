@@ -16,7 +16,22 @@ $(document).ready(function () {
         $.getJSON(url+query+"&callback=?", function(json) {
             $('#domains').empty();
             $.each(json.results, function(i, result) {
-                $("#domains").append('<div id =url"' + i + '">' + result.domain + '</div>');
+                var state = result.availability
+                if ((state == "taken") || (state == "available") || 
+                    (state == "maybe")) {
+                    $("#domains").append('<div id ="url' + i + '"class = "urls">' 
+                                            + result.domain + '</div>');
+                    if (state == "available") {
+                        $("#url"+i).addClass("available");
+                    }
+                    else if (state == "maybe") {
+                        $("#url"+i).addClass("maybe");
+                    }
+                    else {
+                        $("#url"+i).addClass("taken");
+                    }
+
+                }
             });
         });
     })

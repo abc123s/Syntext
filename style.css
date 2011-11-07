@@ -165,3 +165,21 @@ li {
 	border-radius: 10px; 
     -moz-border-radius: 10px; -webkit-border-radius: 10px;
 }
+
+#domains {
+    margin-top: 5px;
+}
+
+.urls {
+    padding: 5px 0 5px 35px; 
+}
+
+.available {
+    background: url('double_chevron.png') no-repeat;
+}
+
+.maybe {
+    background: url('chevron.png') no-repeat;
+}
+
+
