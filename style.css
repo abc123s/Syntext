@@ -183,3 +183,22 @@ li {
 	border-radius: 10px; 
     -moz-border-radius: 10px; -webkit-border-radius: 10px;
 }
+
+.button { 
+	font: 14px Helvetica; color: #C7C7C7;
+    margin: 10px;
+    padding: 2px 6px 2px 6px;
+    border: 2px solid #C7C7C7;
+    border-radius: 10px;
+    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+    display: block;
+    float: right;
+}
+
+.button:hover {
+    font 14px Helvetica;
+    border: 2px solid #333333;
+    color: #333333;
+    border-radius: 10px;
+    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
