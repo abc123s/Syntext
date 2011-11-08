@@ -45,25 +45,6 @@ a.links, a.links:link, a.links:visited, a.links:active, a.links:hover {
     text-decoration: none;
 }
 
-#nav li {
-    margin: 0;
-    float: left;
-    display: block;
-    list-style: none;
-    padding: 0 5px 0 5px;
-    border-right: #c7c7c7 1px solid;
-}
-
-#nav li.first {
-    margin-left: -35px;
-    padding-left: 0;
-}
-
-#nav li.last {
-    padding-right: 0;
-    border-right: none;
-}
-
 #content {
     width: 860px;
     margin-left: auto;
@@ -188,19 +169,19 @@ li {
 	outline: none; /*Remove Chrome and Safari glows on focus*/
 }
 #word0.active {
-	background: #ebf3fc url('bar-bg-active-red.png') repeat-x;
+	background: #ff8080;
     color: black;
-    border: 3px solid #ff8080;
+    border: 3px solid #ff3333;
 } 
 #word1.active {
-	background: #ebf3fc url('bar-bg-active-blue.png') repeat-x;
+	background: #90b2ff;
     color: black;
-	border: 3px solid #abd2ff;
+	border: 3px solid #3399ff;
 }
 #word2.active {
-	background: #ebf3fc url('bar-bg-active-green.png') repeat-x;
+	background: #50e050;
     color: black;
-	border: 3px solid #70f070;
+	border: 3px solid #00CC00;
 }
 
 #output {
