@@ -9,10 +9,7 @@ $(document).ready(function () {
         $.getJSON(url+query+"&callback=?", function(json) {
             $('#domains').empty();
             $.each(json.results, function(i, result) {
-                var state = result.availability
-       
-                
-                
+                var state = result.availability;
                 
                 if ((state == "taken") || (state == "available") || 
                     (state == "maybe")) {
@@ -44,10 +41,26 @@ $(document).ready(function () {
         });
         $(this).css({'background-color':'#c7c7c7'});
 
+
         // retrieve status
         if ($(this).hasClass("available") == true) {
             $("#domain-info").text("Available!");
-            $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + $(this).text() + '"> <input type="hidden" name="checkAvail" value="1"><input type="image" name="submit" value="submit" tabindex="3" border="0" alt="Buy Now!"> <input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
+            
+            // get registrar info to check for GoDaddy
+            var infourl = "http://domai.nr/api/json/info?q=";
+            var infoquery = $(this).text();
+            $.getJSON(infourl+infoquery+"&callback=?", function(json) {
+                var godaddy = false;
+                $.each(json.registrars, function(i, x) {
+                    if (x.registrar == "godaddy.com") {
+                        godaddy = true;
+                    }
+                });
+                if (godaddy == true) {
+                    alert(infoquery);  
+                    $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + $(this).text() + '"> <input type="hidden" name="checkAvail" value="1"><input type="image" name="submit" value="submit" tabindex="3" border="0" alt="Buy Now!"> <input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
+                }
+            });
         }
         else if ($(this).hasClass("maybe") == true) {
             $("#domain-info").text("Might be available!");
