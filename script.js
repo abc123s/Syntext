@@ -57,7 +57,7 @@ $(document).ready(function () {
                     }
                 });
                 if (godaddy == true) {
-                    $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + infoquery + '"> <input type="hidden" name="checkAvail" value="1"><input type="image" name="submit" value="submit" tabindex="3" border="0" alt="Buy Now!"> <input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
+                    $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + infoquery + '"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
                 }
             });
         }

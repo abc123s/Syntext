@@ -229,6 +229,15 @@ li {
     text-align: center;
 }
 
+#buy-now-button {
+    background: #50e050;
+    padding: 3px 5px 3px 5px;
+    margin-top: 15px;
+    font: 16px Helvetica;
+	border-radius: 10px; 
+    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+
 .urls {
     padding: 5px 0 5px 35px;
 }
