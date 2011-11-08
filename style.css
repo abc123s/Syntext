@@ -217,12 +217,12 @@ li {
 
 #domains {
     margin-top: 10px;
-    width: 225px; 
+    width: 250px; 
     float: left;
 }
 
 #domain-info {
-    width: 350px;
+    width: 325px;
     display: block;
     float: right;
     margin-top: 15px;
@@ -230,12 +230,12 @@ li {
 }
 
 #buy-now-button {
-    background: #50e050;
-    padding: 3px 5px 3px 5px;
+    background-color: white;
+    background-image:url('buy-now.png');
+    padding: 8px 38px 9px 37px;
     margin-top: 15px;
-    font: 16px Helvetica;
-	border-radius: 10px; 
-    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+    font: 16px Helvetica; color: white;
+    border: none;
 }
 
 .urls {
