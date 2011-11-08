@@ -19,9 +19,10 @@ body {
 
 #footer {
     margin-top: 40px;
+    padding-top: 40px;
     float: left;
     width: 100%;
-    border-top: 1px #eee9e9 solid;
+    border-top: 2px #eee9e9 solid;
 }
 
 #footer-inner {
@@ -351,3 +352,8 @@ background-color: #F5F5F5;
     float: left;
     margin-top: 20px;
     margin-left: 20px;
+}
+
+#twitter {
+    margin-left: 10px;
+}
