@@ -224,7 +224,7 @@ function highlight(x1, x2, y1, y2) {
     if (x2 == -1) {
         var id = 'word' + x1;
         var word = document.getElementById(id);
-        word.style.color = color1;
+        word.style.color = 'white';
     }
     else {
         var listname1 = 'output' + x1;
@@ -234,7 +234,7 @@ function highlight(x1, x2, y1, y2) {
     if (y2 == -1) {
         var id = 'word' + y1;
         var word = document.getElementById(id);
-        word.style.color = color2;
+        word.style.color = 'white';
     }
     else {
         var listname2 = 'output' + y1;
