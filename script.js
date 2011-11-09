@@ -139,13 +139,13 @@ function makeNames() {
     var type1 = [];
 	var i = 0;
     while (i < 4) {
-        if (document.getElementById('output0') != null) {
+        if (document.getElementById('output0') != null && document.getElementById('output0').childNodes[i] != null) {
             group0.push([document.getElementById('output0').childNodes[i].innerHTML, 0, i]);
         }
-        if (document.getElementById('output1') != null) {
+        if (document.getElementById('output1') != null && document.getElementById('output1').childNodes[i] != null) {
             group1.push([document.getElementById('output1').childNodes[i].innerHTML, 1, i]);
         }
-        if (document.getElementById('output2') != null) {
+        if (document.getElementById('output2') != null && document.getElementById('output2').childNodes[i] != null) {
             group2.push([document.getElementById('output2').childNodes[i].innerHTML, 2, i]);
         }
         i++;
@@ -425,8 +425,8 @@ while (i < 4) {
 	    var item = document.createElement('li');
 	    item.innerHTML = response[i];
         list.appendChild(item);
-        i++;
     }
+        i++;
     }
 }
 
