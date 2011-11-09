@@ -377,9 +377,6 @@ var verbs = [];
 var nouns = [];
 var adjectives = [];
 var adverbs = [];
-if (json == null) {
-    alert('oh noes');
-}
 
 if (json.verb != null) {
 	verbs = json.verb.syn;
@@ -424,10 +421,12 @@ response = response.filter(function(v)
 permute(response);
 
 while (i < 4) {
-	var item = document.createElement('li');
-	item.innerHTML = response[i];
-    list.appendChild(item);
-    i++;
+    if (response[i] != null) {
+	    var item = document.createElement('li');
+	    item.innerHTML = response[i];
+        list.appendChild(item);
+        i++;
+    }
     }
 }
 
