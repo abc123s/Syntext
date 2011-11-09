@@ -125,11 +125,17 @@ $(document).ready(function () {
 // synonyms etc
 function makeNames() {
 	var group0 = [];
-	group0.push([document.getElementById('word0').value, 0, -1]);
+	if (document.getElementById('word0').value != 'search...') {
+        group0.push([document.getElementById('word0').value, 0, -1]);
+    }
 	var group1 = [];
-	group1.push([document.getElementById('word1').value, 1, -1]);
+	if (document.getElementById('word1').value != 'search...') {
+	    group1.push([document.getElementById('word1').value, 1, -1]);
+    }
 	var group2 = [];
-	group2.push([document.getElementById('word2').value, 2, -1]);
+	if (document.getElementById('word2').value != 'search...') {
+	    group2.push([document.getElementById('word2').value, 2, -1]);
+    }
     var type1 = [];
 	var i = 0;
     while (i < 4) {
@@ -141,7 +147,7 @@ function makeNames() {
         }
         if (document.getElementById('output2') != null) {
             group2.push([document.getElementById('output2').childNodes[i].innerHTML, 2, i]);
-        }    
+        }
         i++;
 	}
 	
@@ -350,7 +356,10 @@ function getSynonym() {
     }
     var i = 0;
 	while (i < 3) {
-		makerequest(i);
+        var test = 'word' + i;
+        if (document.getElementById(test).value != 'search...') {
+		    makerequest(i);
+        }
 		i++;
     }
     document.getElementById('i-one').style.display = 'none';
@@ -368,6 +377,10 @@ var verbs = [];
 var nouns = [];
 var adjectives = [];
 var adverbs = [];
+if (json == null) {
+    alert('oh noes');
+}
+
 if (json.verb != null) {
 	verbs = json.verb.syn;
 }
@@ -380,7 +393,6 @@ if (json.adjective != null) {
 if (json.adverb != null) {
 	adverbs = json.adverb.syn;
 }
-
 
 response = response.concat(verbs, nouns, adjectives, adverbs);
 
@@ -548,5 +560,6 @@ function makerequest(x) {
 	var request = 'http://words.bighugelabs.com/api/2/40868e50c339e2dcdaa54d041dffbf88/' + document.getElementById(div).value + '/json?callback=processResponse' + x; 
 	script.type = 'text/javascript';
 	script.src = request;
+    script.onerror = 'processResponse' + x + '()';
 	head.appendChild(script);
 }
