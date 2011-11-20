@@ -137,6 +137,8 @@ function makeNames() {
 	    group2.push([document.getElementById('word2').value, 2, -1]);
     }
     var type1 = [];
+    var type2 = [];
+    var result = [];
 	var i = 0;
     while (i < 4) {
         if (document.getElementById('output0') != null && document.getElementById('output0').childNodes[i] != null) {
@@ -153,6 +155,10 @@ function makeNames() {
 	
 	type1 = joinify(group0,group1).concat(joinify(group0,group2), joinify(group1, group2));
     permute(type1);
+    type2 = buzzify(type1).concat(buzzify(group0.concat(group1, group2)));
+    permute(type2);
+    result = type1.slice(0, 8).concat(type2.slice(0, 4));
+    permute(result);
 
     var output0 = document.getElementById('names0');
     var output1 = document.getElementById('names1');
@@ -167,18 +173,18 @@ function makeNames() {
         output2.removeChild(output2.firstChild);
     }
     i = 0;
-    while (i < 12 && i < type1.length) {
+    while (i < 12 && i < result.length) {
 	    var div = document.createElement('span');
-        div.innerHTML = type1[i][0];
+        div.innerHTML = result[i][0];
         div.setAttribute('class', 'created'); 
         div.addEventListener('mouseover', (function(i) {
             return function() {
-                highlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
+                highlight(result[i][1], result[i][2], result[i][3], result[i][4]);
             };
         })(i));
         div.addEventListener('mouseout', (function(i) {
             return function() {
-                unhighlight(type1[i][1], type1[i][2], type1[i][3], type1[i][4]);
+                unhighlight(result[i][1], result[i][2], result[i][3], result[i][4]);
             };
             })(i));
         if (i < 4) {
@@ -271,6 +277,54 @@ function unhighlight(x1, x2, y1, y2) {
     }
 }
 
+function buzzify(array) {
+    var len = array.length;
+    var list = [];
+    var prefix = ['re', 'pre'];
+    var p = prefix.length;
+    var suffix = ['ify', 'able', 'er', 'ible'];
+    var s = suffix.length;
+    var vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+    for (var i = 0; i < len; i++) {
+        for (var j = 0; j < p; j++) {
+            var buzzword = prefix[j] + array[i][0];
+            if (array[i].length > 3) {
+                list.push([buzzword, array[i][1], array[i][2], array[i][3], array[i][4]]);
+            }
+            else {
+                list.push([buzzword, array[i][1], array[i][2], array[i][1], array[i][2]]);
+            }
+        }
+        for (var j = 0; j < s; j++) {
+            if (vowels.indexOf(array[i][0][array[i][0].length-1]) != -1) {
+                var buzzword = mash(array[i][0], suffix[j], 1, 1);
+                if (buzzword.length < 15) {
+                    if (array[i].length > 3) {
+                        list.push([buzzword, array[i][1], array[i][2], array[i][3], array[i][4]]);
+                    }
+                    else {
+                        list.push([buzzword, array[i][1], array[i][2], array[i][1], array[i][2]]);
+                    }
+                }
+            }
+            else {
+                var buzzword = array[i][0] + suffix[j];
+                if (buzzword.length < 15) {
+                    if (array[i].length > 3) {
+                        list.push([buzzword, array[i][1], array[i][2], array[i][3], array[i][4]]);
+                    }
+                    else {
+                        list.push([buzzword, array[i][1], array[i][2], array[i][1], array[i][2]]);
+                    }
+                }
+            }
+        }
+    }
+    return list;
+}
+
+function insertify(array1, array2) {
+}
 
 function joinify(array1, array2) {
 	var i = 0;
@@ -282,10 +336,10 @@ function joinify(array1, array2) {
 			while (k < 6) {
 				var mix1 = mash(array1[i][0], array2[j][0], k, Math.floor(k/2));
 				var mix2 = mash(array2[j][0], array1[i][0], k, Math.floor((k-1)/2));
-				if (mix1 != false && mix1.length < 15) {
+				if (mix1 != false && mix1.length < 15 && mix1 != array1[i][0]) {
 					list.push([mix1, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
-				if (mix2 != false && mix2.length < 15) {	
+				if (mix2 != false && mix2.length < 15 && mix2 != array1[i][0]) {	
 					list.push([mix2, array1[i][1], array1[i][2], array2[j][1], array2[j][2]]);
 				}
 				k++;
@@ -479,10 +533,12 @@ response = response.filter(function(v)
 permute(response);
 
 while (i < 4) {
-	var item = document.createElement('li');
-	item.innerHTML = response[i];
-	list.appendChild(item);
-	i++;
+    if (response[i] != null) {
+	    var item = document.createElement('li');
+	    item.innerHTML = response[i];
+	    list.appendChild(item);
+    }
+    i++;
 	}
 }
 function processResponse2(json){
@@ -534,10 +590,12 @@ response = response.filter(function(v)
 permute(response);
 
 while (i < 4) {
-	var item = document.createElement('li');
-	item.innerHTML = response[i];
-	list.appendChild(item);
-	i++;
+    if (response[i] != null) {
+	    var item = document.createElement('li');
+	    item.innerHTML = response[i];
+	    list.appendChild(item);
+    }
+    i++;
 	}
 }
 
