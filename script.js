@@ -13,15 +13,20 @@ $(document).ready(function () {
                 
                 if ((state == "taken") || (state == "available") || 
                     (state == "maybe")) {
-                    $("#domains").append('<div id ="url' + i + '"class = "urls">' + result.domain + '</div>');
                     if (state == "available") {
-                        $("#url"+i).addClass("available");
+                        $("#domains").append('<div id ="url' + i + 
+                            '"class = "urls"><div id = "available">' 
+                            + result.domain + '</div></div>');
                     }
                     else if (state == "maybe") {
-                        $("#url"+i).addClass("maybe");
+                        $("#domains").append('<div id ="url' + i + 
+                            '"class = "urls"><div id = "maybe">' 
+                            + result.domain + '</div></div>');
                     }
                     else {
-                        $("#url"+i).addClass("taken");
+                        $("#domains").append('<div id ="url' + i + 
+                            '"class = "urls"><div id = "taken">' 
+                            + result.domain + '</div></div>');
                     }
                 }
             });
@@ -73,13 +78,16 @@ $(document).ready(function () {
     // hovering arrows
     $("#domains").delegate(".urls", "hover", function(event) {
         if (event.type == 'mouseenter') {
-            $(".urls").each(function() {    
-                $("img", this).remove();
+            $(".urls").each(function() {   
+                $(this).css('background-image', '');
+                // $(this).removeClass('hover1').addClass('hover0');
             });
-            $(this).append("<img src='arrow.png' />"); 
+            $(this).css('background-image', 'url(domain-arrow-grey.png)');
+            // $(this).removeClass('hover0').addClass('hover1');
         }
         else {
-            $("img", this).remove();
+            $(this).css('background-image', '');
+            // $(this).removeClass('hover1').addClass('hover0');
         }
     });
 

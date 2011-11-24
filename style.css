@@ -248,22 +248,18 @@ li {
     padding: 5px 0 5px 35px;
 }
 
-.urls img {
-    float: right;
-    margin-top: -5px;
-}
 
-.taken {
+#taken {
     background: url('taken.png') no-repeat left;
     background-position: 4%;
 }
 
-.available {
+#available {
     background: url('ok.png') no-repeat left;
     background-position: 4%;
 }
 
-.maybe {
+#maybe {
     background: url('maybe.png') no-repeat left;
     background-position: 4%;
 }
@@ -337,11 +333,11 @@ display: none;
 }
 
 #ads {
-float: left;
-margin-top: 20px;
-width: 575px;
-height: 100px;
-background-color: #F5F5F5;
+    float: left;
+    margin-top: 20px;
+    width: 575px;
+    height: 100px;
+    background-color: #F5F5F5;
 }
 
 #ads-inner {
