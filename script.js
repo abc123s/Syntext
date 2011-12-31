@@ -1,32 +1,36 @@
-// search bar
 $(document).ready(function () {
+
     // domainr api
     var url = "http://domai.nr/api/json/search?q=";
     var query;
-
-    $(".names").delegate(".created", "click", function() {
+    $(".names").on('click', '.created', function() {
         query = $(this).text();
         $.getJSON(url+query+"&callback=?", function(json) {
             $('#domains').empty();
             $.each(json.results, function(i, result) {
-                var state = result.availability;
                 
+                // attach results
+                var state = result.availability;
                 if ((state == "taken") || (state == "available") || 
                     (state == "maybe")) {
+
                     if (state == "available") {
                         $("#domains").append('<div id ="url' + i + 
-                            '"class = "urls"><div id = "available">' 
-                            + result.domain + '</div></div>');
+                                             '"class = "available">' +
+                                             '<div id ="available-img">' +
+                                             result.domain + '</div></div>');
                     }
                     else if (state == "maybe") {
                         $("#domains").append('<div id ="url' + i + 
-                            '"class = "urls"><div id = "maybe">' 
-                            + result.domain + '</div></div>');
+                                             '"class = "maybe">' +
+                                             '<div id = "maybe-img">' +
+                                             result.domain + '</div></div>');
                     }
                     else {
                         $("#domains").append('<div id ="url' + i + 
-                            '"class = "urls"><div id = "taken">' 
-                            + result.domain + '</div></div>');
+                                             '"class = "taken">' +
+                                             '<div id = "taken-img">' +
+                                             result.domain + '</div></div>');
                     }
                 }
             });
@@ -39,57 +43,47 @@ $(document).ready(function () {
         $("#domain-info").empty();
     });
 
-    // clicked on a domain, clear all other grays
-    $("#domains").delegate(".urls", "click", function() {        
-        $(".urls").each(function() {
-            $(this).css({'background-color':''});
-        });
-        $(this).css({'background-color':'#c7c7c7'});
+    // domain arrows!
+    $("#domains").on({
+        mouseenter: function() {
+            $(this).wrap('<div class="domains-hover" />');
+        },
+        mouseleave: function() {
+            $(this).unwrap();
+        },
+        click: function() {   
+            $('.selected-text').removeClass('selected-text');
+            $('.domains-selected').removeClass('domains-selected');
+            $(this).addClass('domains-selected');
+            $(this).children().addClass('selected-text');
 
-
-        // retrieve status
-        if ($(this).hasClass("available") == true) {
-            $("#domain-info").text("Available!");
+            // retrieve status and deliver info if available
+            if ($(this).hasClass("available")) {
+                $("#domain-info").text("Available!");
             
-            // get registrar info to check for GoDaddy
-            var infourl = "http://domai.nr/api/json/info?q=";
-            var infoquery = $(this).text();
-            $.getJSON(infourl+infoquery+"&callback=?", function(json) {
-                var godaddy = false;
-                $.each(json.registrars, function(i, x) {
-                    if (x.registrar == "godaddy.com") {
-                        godaddy = true;
+                // get registrar info to check for GoDaddy
+                var infourl = "http://domai.nr/api/json/info?q=";
+                var infoquery = $(this).text();
+                $.getJSON(infourl+infoquery+"&callback=?", function(json) {
+                    var godaddy = false;
+                    $.each(json.registrars, function(i, x) {
+                        if (x.registrar == "godaddy.com") {
+                            godaddy = true;
+                        }
+                    });
+                    if (godaddy) {
+                        $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + infoquery + '"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
                     }
                 });
-                if (godaddy == true) {
-                    $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + infoquery + '"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
-                }
-            });
+            }
+            else if ($(this).hasClass("maybe")) {
+                $("#domain-info").text("Might be available!");
+            }
+            else {
+                $("#domain-info").text("Taken!");
+            }
         }
-        else if ($(this).hasClass("maybe") == true) {
-            $("#domain-info").text("Might be available!");
-        }
-        else {
-            $("#domain-info").text("Taken!");
-        }
-
-    });
-
-    // hovering arrows
-    $("#domains").delegate(".urls", "hover", function(event) {
-        if (event.type == 'mouseenter') {
-            $(".urls").each(function() {   
-                $(this).css('background-image', '');
-                // $(this).removeClass('hover1').addClass('hover0');
-            });
-            $(this).css('background-image', 'url(domain-arrow-grey.png)');
-            // $(this).removeClass('hover0').addClass('hover1');
-        }
-        else {
-            $(this).css('background-image', '');
-            // $(this).removeClass('hover1').addClass('hover0');
-        }
-    });
+    }, ".available,.maybe,.taken");
 
     // search bar text + activate
 	$("#word0").attr("value", "search...");

@@ -1,11 +1,11 @@
 body {    
     margin: 0px;
+    cursor: default;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
-
 }
 
 #header {
@@ -79,14 +79,12 @@ a.links, a.links:link, a.links:visited, a.links:active, a.links:hover {
     margin-top: 45px;
     display: none;
 }
-
 #step-three {
     margin-top: 180px;
     display: none;
 }
-
 #step-four {
-    margin-top: 305px;
+    margin-top: 310px;
     display: none;
 }
 
@@ -244,24 +242,48 @@ li {
     border: none;
 }
 
-.urls {
-    padding: 5px 0 5px 35px;
+.domains-hover {
+    background: url('domain-arrow-grey.png') no-repeat left;
 }
 
-
-#taken {
-    background: url('taken.png') no-repeat left;
-    background-position: 4%;
+.domains-selected {
+    background: url('domain-arrow-black.png') no-repeat left;
 }
 
-#available {
-    background: url('ok.png') no-repeat left;
-    background-position: 4%;
+.selected-text {
+    color: white;
 }
 
-#maybe {
-    background: url('maybe.png') no-repeat left;
-    background-position: 4%;
+#taken-img.selected-text {
+    background: url('taken-alt-blue.png') no-repeat left;
+    padding: 6px 0 6px 35px;
+    background-position: 8px;
+}
+#available-img.selected-text {
+    background: url('available-alt-blue.png') no-repeat left;
+    padding: 6px 0 6px 35px;
+    background-position: 8px;
+}
+#maybe-img.selected-text {
+    background: url('maybe-alt-blue.png') no-repeat left;
+    padding: 6px 0 6px 35px;
+    background-position: 8px;
+}
+
+#taken-img {
+    background: url('taken-alt.png') no-repeat left;
+    padding: 6px 0 6px 35px;
+    background-position: 8px;
+}
+#available-img {
+    background: url('available-alt.png') no-repeat left;
+    padding: 6px 0 6px 35px;
+    background-position: 8px;
+}
+#maybe-img {
+    background: url('maybe-alt.png') no-repeat left;
+    padding: 6px 0 6px 35px;
+    background-position: 8px;
 }
 
 .button { 
@@ -329,7 +351,7 @@ li {
 }
 
 #domainsearch {
-display: none;
+    display: none;
 }
 
 #ads {
