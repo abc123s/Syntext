@@ -420,6 +420,7 @@ function getSynonym() {
     }
     document.getElementById('i-one').style.display = 'none';
     document.getElementById('step-one').style.display= 'none';
+    document.getElementById('instructions').style.display = 'none';
     if (document.getElementById('i-three').style.display == '')
     {
         document.getElementById('i-two').style.display = 'inherit';

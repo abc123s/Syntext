@@ -371,3 +371,12 @@ li {
 #twitter {
     margin-left: 10px;
 }
+
+#instructions {
+    position: absolute;
+    margin-top: 55px;
+    font-size: 24px;
+    width: 550px;
+    margin-left: 42px;
+    margin-right: auto;    
+}
