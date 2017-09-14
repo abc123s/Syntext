@@ -60,7 +60,7 @@ $(document).ready(function () {
                 // get registrar info to check for GoDaddy
                 var registerUrl = "https://domainr.p.mashape.com/v2/register?mashape-key=1Mc8kqKjUimshxc55jJSmcHUpGXop1Nc3Zkjsnl7EzTHUT3UHH&domain=";
                 var registerQuery = $(this).text();
-                $("#domain-info").append(`<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="${registerUrl}${registerQuery}"/> </form>`);
+                $("#domain-info").append(`<form name="LookupForm" action="https://www.anrdoezrs.net/interactive" method="GET"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="${registerUrl}${registerQuery}"/> </form>`);
             }
             else if ($(this).hasClass("maybe")) {
                 $("#domain-info").text("Might be available!");
@@ -603,7 +603,7 @@ function makerequest(x) {
 	var head = document.getElementsByTagName('head')[0];
 	var script = document.createElement('script');
 	var div = "word" + x;
-	var request = 'http://words.bighugelabs.com/api/2/40868e50c339e2dcdaa54d041dffbf88/' + document.getElementById(div).value + '/json?callback=processResponse' + x; 
+	var request = 'https://words.bighugelabs.com/api/2/40868e50c339e2dcdaa54d041dffbf88/' + document.getElementById(div).value + '/json?callback=processResponse' + x; 
 	script.type = 'text/javascript';
 	script.src = request;
     script.onerror = 'processResponse' + x + '()';
