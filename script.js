@@ -1,38 +1,34 @@
 $(document).ready(function () {
 
     // domainr api
-    var url = "http://domai.nr/api/json/search?q=";
+    var searchUrl = "https://domainr.p.mashape.com/v2/search?mashape-key=1Mc8kqKjUimshxc55jJSmcHUpGXop1Nc3Zkjsnl7EzTHUT3UHH&query="
     var query;
     $(".names").on('click', '.created', function() {
         query = $(this).text();
-        $.getJSON(url+query+"&callback=?", function(json) {
+        $.getJSON(searchUrl+query+"&callback=?", function(json) {
+            var statusUrl = "https://domainr.p.mashape.com/v2/status?mashape-key=1Mc8kqKjUimshxc55jJSmcHUpGXop1Nc3Zkjsnl7EzTHUT3UHH&domain="
             $('#domains').empty();
             $.each(json.results, function(i, result) {
-                
-                // attach results
-                var state = result.availability;
-                if ((state == "taken") || (state == "available") || 
-                    (state == "maybe")) {
-
-                    if (state == "available") {
-                        $("#domains").append('<div id ="url' + i + 
-                                             '"class = "available">' +
-                                             '<div id ="available-img">' +
-                                             result.domain + '</div></div>');
+                $.getJSON(statusUrl + result.domain + "&callback=?", function(json) {
+                    // attach results
+                    var status = json.status[0].summary;
+                    if (['inactive', 'premium', 'priced', 'marketed', 'transferable'].includes(status)) {
+                        $("#domains").append('<div id ="url' + i +
+                            '"class = "available">' +
+                            '<div id ="available-img">' +
+                            result.domain + '</div></div>');
+                    } else if (['unknown', 'parked', 'expiring', 'deleting', 'undelegated'].includes(status)) {
+                        $("#domains").append('<div id ="url' + i +
+                            '"class = "maybe">' +
+                            '<div id = "maybe-img">' +
+                            result.domain + '</div></div>');
+                    } else if (['claimed', 'reserved', 'registrar', 'active'].includes(status)){
+                        $("#domains").append('<div id ="url' + i +
+                            '"class = "taken">' +
+                            '<div id = "taken-img">' +
+                            result.domain + '</div></div>');
                     }
-                    else if (state == "maybe") {
-                        $("#domains").append('<div id ="url' + i + 
-                                             '"class = "maybe">' +
-                                             '<div id = "maybe-img">' +
-                                             result.domain + '</div></div>');
-                    }
-                    else {
-                        $("#domains").append('<div id ="url' + i + 
-                                             '"class = "taken">' +
-                                             '<div id = "taken-img">' +
-                                             result.domain + '</div></div>');
-                    }
-                }
+                });
             });
         });
         
@@ -62,19 +58,9 @@ $(document).ready(function () {
                 $("#domain-info").text("Available!");
             
                 // get registrar info to check for GoDaddy
-                var infourl = "http://domai.nr/api/json/info?q=";
-                var infoquery = $(this).text();
-                $.getJSON(infourl+infoquery+"&callback=?", function(json) {
-                    var godaddy = false;
-                    $.each(json.registrars, function(i, x) {
-                        if (x.registrar == "godaddy.com") {
-                            godaddy = true;
-                        }
-                    });
-                    if (godaddy) {
-                        $("#domain-info").append('<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input id="domainsearch" type="text" name="domainToCheck" size="22" maxlength="67" tabindex="1" style="font-size:11px" value = "' + infoquery + '"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="https://www.godaddy.com/gdshop/registrar/search.asp?isc=cjcdomsb2"/> </form>');
-                    }
-                });
+                var registerUrl = "https://domainr.p.mashape.com/v2/register?mashape-key=1Mc8kqKjUimshxc55jJSmcHUpGXop1Nc3Zkjsnl7EzTHUT3UHH&domain=";
+                var registerQuery = $(this).text();
+                $("#domain-info").append(`<form name="LookupForm" action="http://www.anrdoezrs.net/interactive" method="GET"> <input type="hidden" name="checkAvail" value="1"><input type="submit" name="submit" value="Buy Now!" tabindex="3" border="0" id = "buy-now-button"><input type="hidden" name="aid" value="10450071"/> <input type="hidden" name="pid" value="5524700"/> <input type="hidden" name="url" value="${registerUrl}${registerQuery}"/> </form>`);
             }
             else if ($(this).hasClass("maybe")) {
                 $("#domain-info").text("Might be available!");
